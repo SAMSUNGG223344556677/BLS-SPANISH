@@ -115,6 +115,11 @@ class SystemStatus(BaseModel):
     is_running: bool = False
     current_task: Optional[str] = None
     last_update: datetime = Field(default_factory=datetime.utcnow)
+    
+    class Config:
+        json_encoders = {
+            datetime: lambda v: v.isoformat()
+        }
 
 # BLS System state
 system_status = SystemStatus()
