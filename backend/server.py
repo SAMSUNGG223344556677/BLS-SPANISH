@@ -466,7 +466,7 @@ async def book_appointment(booking_request: VisaBookingRequest):
         # Broadcast status update
         await manager.broadcast(json.dumps({
             "type": "system_status",
-            "data": system_status.dict()
+            "data": json.loads(system_status.json())
         }))
         
         # In a real implementation, this would use Selenium/Playwright to automate BLS booking
