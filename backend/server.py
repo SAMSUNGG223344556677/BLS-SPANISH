@@ -577,7 +577,7 @@ async def stop_system():
             "data": json.loads(system_status.json())
         }))
         
-        return {"message": "BLS automation system stopped", "status": system_status.dict()}
+        return {"message": "BLS automation system stopped", "status": json.loads(system_status.json())}
     except Exception as e:
         logging.error(f"Error stopping system: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error stopping system: {str(e)}")
