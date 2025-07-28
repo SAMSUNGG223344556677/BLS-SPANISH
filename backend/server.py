@@ -480,7 +480,7 @@ async def book_appointment(booking_request: VisaBookingRequest):
             "credential_id": primary_credential["id"],
             "booking_request": booking_request.dict(),
             "status": "completed",
-            "created_at": datetime.utcnow()
+            "created_at": datetime.utcnow().isoformat()
         }
         
         await db.bookings.insert_one(booking_record)
