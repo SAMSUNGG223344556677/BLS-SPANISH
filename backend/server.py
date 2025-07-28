@@ -342,7 +342,7 @@ async def update_credential(credential_id: str, credential_data: CredentialCreat
         # Broadcast update via WebSocket
         await manager.broadcast(json.dumps({
             "type": "credential_updated",
-            "data": credential.dict()
+            "data": json.loads(credential.json())
         }))
         
         return credential
