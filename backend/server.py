@@ -483,18 +483,18 @@ async def book_appointment(booking_request: VisaBookingRequest):
             "created_at": datetime.utcnow().isoformat()
         }
         
-        await db.bookings.insert_one(booking_record)
+        # Insert into database
+        result = await db.bookings.insert_one(booking_record.copy())
         
         # Update system status
         system_status.is_running = False
         system_status.current_task = None
         system_status.last_update = datetime.utcnow()
         
-        # Broadcast completion
-        booking_broadcast = booking_record.copy()
+        # Broadcast completion (use the original record without MongoDB ObjectId)
         await manager.broadcast(json.dumps({
             "type": "booking_completed",
-            "data": booking_broadcast
+            "data": booking_record
         }))
         
         return {
