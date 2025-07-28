@@ -588,6 +588,12 @@ async def get_bookings(skip: int = 0, limit: int = 100):
     try:
         cursor = db.bookings.find().skip(skip).limit(limit).sort("created_at", -1)
         bookings = await cursor.to_list(length=limit)
+        
+        # Convert MongoDB documents to JSON-serializable format
+        for booking in bookings:
+            if "_id" in booking:
+                del booking["_id"]  # Remove MongoDB ObjectId
+                
         return bookings
     except Exception as e:
         logging.error(f"Error fetching bookings: {str(e)}")
