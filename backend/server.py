@@ -210,7 +210,7 @@ async def update_applicant(applicant_id: str, applicant_data: ApplicantCreate):
         # Broadcast update via WebSocket
         await manager.broadcast(json.dumps({
             "type": "applicant_updated",
-            "data": applicant.dict()
+            "data": json.loads(applicant.json())
         }))
         
         return applicant
