@@ -491,9 +491,10 @@ async def book_appointment(booking_request: VisaBookingRequest):
         system_status.last_update = datetime.utcnow()
         
         # Broadcast completion
+        booking_broadcast = booking_record.copy()
         await manager.broadcast(json.dumps({
             "type": "booking_completed",
-            "data": booking_record
+            "data": booking_broadcast
         }))
         
         return {
