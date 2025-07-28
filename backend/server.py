@@ -92,6 +92,11 @@ class Credential(CredentialBase):
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     last_used: Optional[datetime] = None
+    
+    class Config:
+        json_encoders = {
+            datetime: lambda v: v.isoformat()
+        }
 
 # BLS Automation Models
 class VisaBookingRequest(BaseModel):
