@@ -574,7 +574,7 @@ async def stop_system():
         
         await manager.broadcast(json.dumps({
             "type": "system_stopped",
-            "data": system_status.dict()
+            "data": json.loads(system_status.json())
         }))
         
         return {"message": "BLS automation system stopped", "status": system_status.dict()}
