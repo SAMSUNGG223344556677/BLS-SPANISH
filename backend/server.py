@@ -556,7 +556,7 @@ async def start_system():
         
         await manager.broadcast(json.dumps({
             "type": "system_started",
-            "data": system_status.dict()
+            "data": json.loads(system_status.json())
         }))
         
         return {"message": "BLS automation system started", "status": system_status.dict()}
