@@ -191,10 +191,7 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus:
-    - "Applicant Management APIs"
-    - "Login Credentials Management APIs" 
-    - "BLS Automation Core System"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
