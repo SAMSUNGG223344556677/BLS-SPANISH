@@ -531,7 +531,7 @@ async def solve_captcha(captcha_request: CaptchaRequest):
             "target_number": captcha_request.target_number,
             "num_images": len(captcha_request.captcha_images),
             "solution": solution,
-            "created_at": datetime.utcnow()
+            "created_at": datetime.utcnow().isoformat()
         }
         
         await db.captcha_solutions.insert_one(captcha_record)
